@@ -9,7 +9,7 @@ shinyUI(pageWithSidebar(
   
   sidebarPanel(
     
-    div(p("Try to find values for the slope and intercept that minimize the residual error from the linear model.")),
+    div(p("Change the Intercept and Slope values below to minimize the Sum of Squares Residuals (i.e. the sum of the squared vertical distances between each data point and the linear regression model line.)")),
     
     div(
       
@@ -25,7 +25,11 @@ shinyUI(pageWithSidebar(
       br(),
       checkboxInput("summary",
                     strong("Show summary(lm(y ~ x))"),
-                    value=FALSE)
+                    value=FALSE),
+      br(),
+      shiny::actionButton(inputId='ab1', label="View App Code", 
+                          icon = icon("github"), 
+                          onclick ="window.open('https://github.com/billster45/StatApps/tree/master/shiny/simple_regression', '_blank')")
       
     )
   ),
