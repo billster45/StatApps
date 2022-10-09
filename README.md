@@ -43,7 +43,7 @@ Simple linear regression
 
 ![](shiny/simple_regression/screenshot.png)
 
-[Link to Shiny app](https://gallery.shinyapps.io/simple_regression/)
+[Link to Shiny app](https://billster45.shinyapps.io/simple_regression/)
 
 This example demonstrates the key objective of linear regression:
 finding the coefficients for a linear model that minimize the squared
