@@ -38,7 +38,7 @@ shinyServer(function(input, output) {
     
     # Calculate the current and optimal residual sum squares
     ss.res <- sum(resid ** 2)
-    resid.best <- y - (2 + x)
+    resid.best <- y - (8 + x)
     ss.res.best <- sum(resid.best ** 2)
     
     # Compute R^2
@@ -64,10 +64,10 @@ shinyServer(function(input, output) {
     resid <- reg.data$resid
     
     # Mask data outside the viewport
-#    mask <- x > -4.5 & x < 4.5 & y > -3 & y < 8
- #   x <- x[mask]
-  #  y <- y[mask]
-   # resid <- resid[mask]
+    mask <- x > 0.5 & x < 12 & y > 5 & y < 15
+    x <- x[mask]
+    y <- y[mask]
+    resid <- resid[mask]
     
     
     # Plot the regression line
@@ -104,7 +104,7 @@ shinyServer(function(input, output) {
     plot(ss.res, 1, col=resid.color, cex=2,
          yaxt="n", bty="n", xlim=c(0, 12000),
          ylab="", xlab="", main="Sum of Squares of Residuals")
-  #  points(ss.res.best, 1, pch=4, cex=2)
+    points(ss.res.best, 1, pch=4, cex=2)
     
   })
   

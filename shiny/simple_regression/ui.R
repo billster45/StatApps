@@ -20,8 +20,8 @@ shinyUI(pageWithSidebar(
       br(),
       sliderInput("slope", 
                   strong("Slope"),
-                  min=0, max=3, step=.25, 
-                  value=sample(seq(0, 3, .25), 1), ticks=FALSE),
+                  min=-2, max=3, step=.25, 
+                  value=sample(seq(-2, 3, .25), 1), ticks=FALSE),
       br(),
       checkboxInput("summary",
                     strong("Show summary(lm(y ~ x))"),
@@ -32,7 +32,7 @@ shinyUI(pageWithSidebar(
 
   mainPanel(
     div(plotOutput("reg.plot", width=fig.width, height=fig.height),
-        title="y = 2 + x"),
+        title="y = 8 + x"),
     div(plotOutput("ss.plot", width=fig.width, height=fig.height / 3)),
     div(plotOutput("resid.plot", width=fig.width, height=fig.height / 2)),
     div(class="span7", conditionalPanel("input.summary == true",
