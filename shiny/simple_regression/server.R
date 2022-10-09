@@ -9,8 +9,8 @@ shinyServer(function(input, output) {
     
     # Hardcode the true relationship
     n.obs = 50
-    x <- rnorm(n.obs, 0, 2)
-    y <- 2 + x + rnorm(n.obs, 0, 1)
+    x <- rnorm(n.obs, 6, 2)
+    y <- 2 + x + rnorm(n.obs, 6, 1)
     
     model.summary <- summary(lm(y ~ x))
     
@@ -30,7 +30,7 @@ shinyServer(function(input, output) {
     b <- input$slope
     
     # Give a visual cue when we have the right regression
-    if (a == 2 & b == 1) resid.color <- "seagreen" else resid.color <- "firebrick"
+    if (a == 8 & b == 1) resid.color <- "seagreen" else resid.color <- "firebrick"
     
     # Calculate the current residuals
     yhat <- input$intercept + x * input$slope
@@ -64,17 +64,18 @@ shinyServer(function(input, output) {
     resid <- reg.data$resid
     
     # Mask data outside the viewport
-    mask <- x > -4.5 & x < 4.5 & y > -3 & y < 8
-    x <- x[mask]
-    y <- y[mask]
-    resid <- resid[mask]
+#    mask <- x > -4.5 & x < 4.5 & y > -3 & y < 8
+ #   x <- x[mask]
+  #  y <- y[mask]
+   # resid <- resid[mask]
     
     
     # Plot the regression line
-    plot(c(-4.5, 4.5), c(a + b * -4.5,  a + b * 4.5), type="l", lwd=2,
-         bty="n", xlim=c(-5, 5), ylim=c(-3, 8), xlab="x", ylab="y",
+    plot(c(1, 20), c(a + b * 1,  a + b * 20), type="l", lwd=2,
+         bty="n", xlim=c(0, 12), ylim=c(0, 20), xlab="x", ylab="y",
          main="Linear Model Y ~ X")
-    
+    axis(side = 1, at = seq(1, 12, 1))
+
     # Plot each residual distance
     for (i in 1:length(resid)){
       lines(c(x[i], x[i]), c(y[i], y[i] - resid[i]),
@@ -85,7 +86,7 @@ shinyServer(function(input, output) {
     points(x, y,  pch=16, col="#444444")
     
     # Plot the current equation as a legend
-    legend(-5, 8, sprintf("y = %.3g + %.3g * x", a, b), lty=1, lwd=2, bty="n")
+    legend(0, 20, sprintf("y = %.3g + %.3g * x", a, b), lty=1, lwd=2, bty="n")
     
   })
   
@@ -101,9 +102,9 @@ shinyServer(function(input, output) {
     
     # Plot the two points
     plot(ss.res, 1, col=resid.color, cex=2,
-         yaxt="n", bty="n", xlim=c(0, 1000),
+         yaxt="n", bty="n", xlim=c(0, 12000),
          ylab="", xlab="", main="Sum of Squares of Residuals")
-    points(ss.res.best, 1, pch=4, cex=2)
+  #  points(ss.res.best, 1, pch=4, cex=2)
     
   })
   
