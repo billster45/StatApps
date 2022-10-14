@@ -72,7 +72,7 @@ shinyServer(function(input, output) {
     
     # Plot the regression line
     plot(c(1, 20), c(a + b * 1,  a + b * 20), type="l", lwd=2,
-         bty="n", xlim=c(0, 12), ylim=c(0, 20), xlab="x", ylab="y",
+         bty="n", xlim=c(0, 12), ylim=c(0, 20), xlab=input$x, ylab=input$y,
          main="Linear Model Y ~ X")
     axis(side = 1, at = seq(1, 12, 1))
 
